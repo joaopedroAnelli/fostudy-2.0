@@ -1817,6 +1817,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       drawer: null,
       items: [{
+        icon: 'dashboard',
+        text: 'Dashboard',
+        route: '/dashboard'
+      }, {
         icon: 'school',
         text: 'Instituicoes',
         route: '/instituicoes'
@@ -1825,29 +1829,13 @@ __webpack_require__.r(__webpack_exports__);
         text: 'Disciplinas',
         route: '/disciplinas'
       }, {
-        icon: 'book',
+        icon: 'border_color',
         text: 'Provas',
         route: '/provas'
       }, {
         icon: 'featured_play_list',
         text: 'Trabalhos',
         route: '/trabalhos'
-      }],
-      items2: [{
-        picture: 28,
-        text: 'Joseph'
-      }, {
-        picture: 38,
-        text: 'Apple'
-      }, {
-        picture: 48,
-        text: 'Xbox Ahoy'
-      }, {
-        picture: 58,
-        text: 'Nokia'
-      }, {
-        picture: 78,
-        text: 'MKBHD'
       }]
     };
   },
@@ -1903,6 +1891,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "index",
   data: function data() {
@@ -1921,18 +1927,208 @@ __webpack_require__.r(__webpack_exports__);
       }],
       institutions: [{
         id: 13422,
-        name: 'Frozen Yogurt',
+        name: 'FATEC',
         courses_quantity: 159
       }, {
         id: 13423,
-        name: 'Ice cream sandwich',
+        name: 'IF-SP',
         courses_quantity: 237
       }, {
         id: 13424,
-        name: 'Eclair',
+        name: 'USP',
         courses_quantity: 262
       }]
     };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/modules/instituicoes/novo.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/modules/instituicoes/novo.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "index",
+  data: function data() {
+    return {
+      valid: false,
+      dialog: false,
+      institution: {
+        name: "",
+        courses: []
+      },
+      rules: {
+        name: [function (v) {
+          return !!v || 'Nome obrigatório!';
+        }]
+      },
+      headers: [{
+        text: 'Nome',
+        align: 'left',
+        sortable: true,
+        value: 'name'
+      }, {
+        text: 'Meses por temporada',
+        align: 'left',
+        sortable: true,
+        value: 'months_per_seasons'
+      }, {
+        text: 'Quantidade de temporadas',
+        align: 'left',
+        sortable: true,
+        value: 'seasons_quantity'
+      }, {
+        text: 'Ações',
+        value: 'name',
+        sortable: false
+      }],
+      editedItem: {
+        name: '',
+        months_per_seasons: 0,
+        seasons_quantity: 0
+      },
+      defaultItem: {
+        name: '',
+        calories: 0,
+        fat: 0,
+        carbs: 0,
+        protein: 0
+      },
+      editedIndex: -1
+    };
+  },
+  computed: {
+    formTitle: function formTitle() {
+      return this.editedIndex === -1 ? 'Novo curso' : 'Editar Curso';
+    }
+  },
+  methods: {
+    close: function close() {
+      var _this = this;
+
+      this.dialog = false;
+      setTimeout(function () {
+        _this.editedItem = Object.assign({}, _this.defaultItem);
+        _this.editedIndex = -1;
+      }, 300);
+    },
+    save: function save() {
+      if (this.editedIndex > -1) {
+        Object.assign(this.institution.courses[this.editedIndex], this.editedItem);
+      } else {
+        this.institution.courses.push(this.editedItem);
+      }
+
+      this.close();
+    },
+    editItem: function editItem(item) {
+      this.editedIndex = this.institution.courses.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialog = true;
+    },
+    deleteItem: function deleteItem(item) {
+      var index = this.institution.courses.indexOf(item);
+      confirm('Você tem certeza que deseja excluir esse curso?') && this.institution.courses.splice(index, 1);
+    }
   }
 });
 
@@ -37997,30 +38193,481 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-flex",
-    { attrs: { column: "" } },
+    "v-container",
     [
-      _c("h1", [_vm._v("Instituições")]),
-      _vm._v(" "),
-      _c("v-divider"),
-      _vm._v(" "),
-      false
-        ? undefined
-        : _c(
-            "div",
-            [
-              _c("v-alert", { attrs: { value: true, type: "info" } }, [
-                _vm._v(
-                  "\n            Nenhuma instituição cadastrada.\n        "
+      _c(
+        "v-layout",
+        { attrs: { column: "", "fill-height": "" } },
+        [
+          _c("h1", [_vm._v("Instituições")]),
+          _vm._v(" "),
+          _c("v-divider", { staticClass: "mb-5" }),
+          _vm._v(" "),
+          _vm.institutions
+            ? _c("v-data-table", {
+                staticClass: "elevation-1",
+                attrs: { headers: _vm.headers, items: _vm.institutions },
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "items",
+                      fn: function(props) {
+                        return [
+                          _c("td", [_vm._v(_vm._s(props.item.id))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(props.item.name))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(props.item.courses_quantity))
+                          ])
+                        ]
+                      }
+                    }
+                  ],
+                  null,
+                  false,
+                  1910602408
                 )
-              ]),
-              _vm._v(" "),
-              _c("v-btn", { attrs: { color: "success" } }, [
-                _vm._v("Cadastrar")
-              ])
+              })
+            : _c(
+                "div",
+                [
+                  _c("v-alert", { attrs: { value: true, type: "info" } }, [
+                    _vm._v(
+                      "\n                Nenhuma instituição cadastrada.\n            "
+                    )
+                  ])
+                ],
+                1
+              ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              staticClass: "mb-5",
+              attrs: {
+                absolute: "",
+                dark: "",
+                fab: "",
+                bottom: "",
+                right: "",
+                color: "success"
+              },
+              on: {
+                click: function($event) {
+                  return _vm.$router.push("/instituicoes/novo")
+                }
+              }
+            },
+            [_c("v-icon", [_vm._v("add")])],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/modules/instituicoes/novo.vue?vue&type=template&id=cafaf32e&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/modules/instituicoes/novo.vue?vue&type=template&id=cafaf32e&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    [
+      _c(
+        "v-layout",
+        { attrs: { column: "", "fill-height": "" } },
+        [
+          _c("h1", [_vm._v("Nova Instituição")]),
+          _vm._v(" "),
+          _c("v-divider", { staticClass: "mb-5" }),
+          _vm._v(" "),
+          _c(
+            "v-form",
+            {
+              model: {
+                value: _vm.valid,
+                callback: function($$v) {
+                  _vm.valid = $$v
+                },
+                expression: "valid"
+              }
+            },
+            [
+              _c(
+                "v-container",
+                [
+                  _c(
+                    "v-layout",
+                    { attrs: { column: "" } },
+                    [
+                      _c(
+                        "v-flex",
+                        { attrs: { md3: "" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              rules: _vm.rules.name,
+                              label: "Nome",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.institution.name,
+                              callback: function($$v) {
+                                _vm.$set(_vm.institution, "name", $$v)
+                              },
+                              expression: "institution.name"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-flex", { attrs: { md12: "" } }, [
+                        _c(
+                          "div",
+                          [
+                            _c(
+                              "v-toolbar",
+                              { attrs: { flat: "" } },
+                              [
+                                _c("v-toolbar-title", [_vm._v("Cursos")]),
+                                _vm._v(" "),
+                                _c("v-spacer"),
+                                _vm._v(" "),
+                                _c(
+                                  "v-dialog",
+                                  {
+                                    attrs: { "max-width": "500px" },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "activator",
+                                        fn: function(ref) {
+                                          var on = ref.on
+                                          return [
+                                            _c(
+                                              "v-btn",
+                                              _vm._g(
+                                                {
+                                                  staticClass: "mb-2",
+                                                  attrs: {
+                                                    color: "success",
+                                                    dark: ""
+                                                  }
+                                                },
+                                                on
+                                              ),
+                                              [_vm._v("Adicionar")]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ]),
+                                    model: {
+                                      value: _vm.dialog,
+                                      callback: function($$v) {
+                                        _vm.dialog = $$v
+                                      },
+                                      expression: "dialog"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-card",
+                                      [
+                                        _c("v-card-title", [
+                                          _c(
+                                            "span",
+                                            { staticClass: "headline" },
+                                            [_vm._v(_vm._s(_vm.formTitle))]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-card-text",
+                                          [
+                                            _c(
+                                              "v-container",
+                                              { attrs: { "grid-list-md": "" } },
+                                              [
+                                                _c(
+                                                  "v-layout",
+                                                  { attrs: { wrap: "" } },
+                                                  [
+                                                    _c(
+                                                      "v-flex",
+                                                      {
+                                                        attrs: {
+                                                          xs12: "",
+                                                          sm6: "",
+                                                          md4: ""
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-text-field", {
+                                                          attrs: {
+                                                            label: "Nome"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .name,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "name",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.name"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-flex",
+                                                      {
+                                                        attrs: {
+                                                          xs12: "",
+                                                          sm6: "",
+                                                          md4: ""
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-text-field", {
+                                                          attrs: {
+                                                            label:
+                                                              "Meses por temporada"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .months_per_seasons,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "months_per_seasons",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.months_per_seasons"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-flex",
+                                                      {
+                                                        attrs: {
+                                                          xs12: "",
+                                                          sm6: "",
+                                                          md4: ""
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-text-field", {
+                                                          attrs: {
+                                                            label:
+                                                              "Quantidade de temporada"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .seasons_quantity,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "seasons_quantity",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.seasons_quantity"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-card-actions",
+                                          [
+                                            _c("v-spacer"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                attrs: {
+                                                  color: "blue darken-1",
+                                                  flat: ""
+                                                },
+                                                on: { click: _vm.close }
+                                              },
+                                              [_vm._v("Cancelar")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                attrs: {
+                                                  color: "blue darken-1",
+                                                  flat: ""
+                                                },
+                                                on: { click: _vm.save }
+                                              },
+                                              [_vm._v("Save")]
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("v-data-table", {
+                              attrs: {
+                                headers: _vm.headers,
+                                items: _vm.institution.courses,
+                                "hide-actions": ""
+                              },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "items",
+                                  fn: function(props) {
+                                    return [
+                                      _c("td", [
+                                        _vm._v(_vm._s(props.item.name))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(props.item.months_per_seasons)
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(props.item.seasons_quantity)
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "justify-center layout px-0"
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            {
+                                              staticClass: "mr-2",
+                                              attrs: { small: "" },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.editItem(
+                                                    props.item
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                            edit\n                                        "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-icon",
+                                            {
+                                              attrs: { small: "" },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.deleteItem(
+                                                    props.item
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                            delete\n                                        "
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  }
+                                }
+                              ])
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           )
+        ],
+        1
+      )
     ],
     1
   )
@@ -79125,6 +79772,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/src/modules/instituicoes/novo.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/src/modules/instituicoes/novo.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _novo_vue_vue_type_template_id_cafaf32e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./novo.vue?vue&type=template&id=cafaf32e&scoped=true& */ "./resources/js/src/modules/instituicoes/novo.vue?vue&type=template&id=cafaf32e&scoped=true&");
+/* harmony import */ var _novo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./novo.vue?vue&type=script&lang=js& */ "./resources/js/src/modules/instituicoes/novo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _novo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _novo_vue_vue_type_template_id_cafaf32e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _novo_vue_vue_type_template_id_cafaf32e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "cafaf32e",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/src/modules/instituicoes/novo.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/src/modules/instituicoes/novo.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/src/modules/instituicoes/novo.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_novo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./novo.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/modules/instituicoes/novo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_novo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/src/modules/instituicoes/novo.vue?vue&type=template&id=cafaf32e&scoped=true&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/src/modules/instituicoes/novo.vue?vue&type=template&id=cafaf32e&scoped=true& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_novo_vue_vue_type_template_id_cafaf32e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./novo.vue?vue&type=template&id=cafaf32e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/modules/instituicoes/novo.vue?vue&type=template&id=cafaf32e&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_novo_vue_vue_type_template_id_cafaf32e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_novo_vue_vue_type_template_id_cafaf32e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/src/modules/instituicoes/routes.js":
 /*!*********************************************************!*\
   !*** ./resources/js/src/modules/instituicoes/routes.js ***!
@@ -79135,10 +79851,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index */ "./resources/js/src/modules/instituicoes/index.vue");
+/* harmony import */ var _novo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./novo */ "./resources/js/src/modules/instituicoes/novo.vue");
+
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/instituicoes',
   component: _index__WEBPACK_IMPORTED_MODULE_0__["default"]
+}, {
+  path: '/instituicoes/novo',
+  component: _novo__WEBPACK_IMPORTED_MODULE_1__["default"]
 }]);
 
 /***/ }),

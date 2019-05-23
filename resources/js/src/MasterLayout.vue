@@ -52,17 +52,11 @@
             data: () => ({
                 drawer: null,
                 items: [
+                    { icon: 'dashboard', text: 'Dashboard', route: '/dashboard'},
                     { icon: 'school', text: 'Instituicoes', route: '/instituicoes'},
                     { icon: 'book', text: 'Disciplinas', route: '/disciplinas'},
-                    { icon: 'book', text: 'Provas', route: '/provas'},
+                    { icon: 'border_color', text: 'Provas', route: '/provas'},
                     { icon: 'featured_play_list', text: 'Trabalhos', route: '/trabalhos'},
-                ],
-                items2: [
-                    { picture: 28, text: 'Joseph' },
-                    { picture: 38, text: 'Apple' },
-                    { picture: 48, text: 'Xbox Ahoy' },
-                    { picture: 58, text: 'Nokia' },
-                    { picture: 78, text: 'MKBHD' }
                 ]
             }),
             props: {

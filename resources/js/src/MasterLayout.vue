@@ -9,7 +9,7 @@
                     clipped
                     app
             >
-                <v-list dense>
+                <v-list>
                     <v-list-tile v-for="item in items" :key="item.text" @click="goToPage(item.route)">
                         <v-list-tile-action>
                             <v-icon>{{ item.icon }}</v-icon>
@@ -24,7 +24,6 @@
             </v-navigation-drawer>
             <v-toolbar
                     color="primary"
-                    dense
                     fixed
                     clipped-left
                     app

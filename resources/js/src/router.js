@@ -1,7 +1,6 @@
 import VueRouter from "vue-router";
 import MasterLayout from "./MasterLayout";
-import institutions from "./modules/instituicoes/routes"
-
+import routes from './modules/routes'
 
 const router = new VueRouter({
     mode: 'history',
@@ -9,7 +8,7 @@ const router = new VueRouter({
         {
             path: '/',
             component: MasterLayout,
-            children: institutions
+            children: routes
         }
     ]
 })

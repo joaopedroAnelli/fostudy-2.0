@@ -62,24 +62,14 @@
                     { text: 'Nome', value: 'name'},
                     { text: 'Cursos qtd', value: 'courses_quantity'},
                 ],
-                institutions: [
-                    {
-                        id: 13422,
-                        name: 'FATEC',
-                        courses_quantity: 159,
-                    },
-                    {
-                        id: 13423,
-                        name: 'IF-SP',
-                        courses_quantity: 237,
-                    },
-                    {
-                        id: 13424,
-                        name: 'USP',
-                        courses_quantity: 262,
-                    },
-                ]
+                institutions: []
             }
+        },
+
+        mounted() {
+            axios.get('/api/instituicoes').then(r => {
+                this.institutions = r.data
+            })
         }
     }
 </script>

@@ -26,3 +26,8 @@ Route::get('/instituicoes', [
     'uses' => 'InstitutionController@get'
 ]);
 
+
+Route::get('/courses', [
+    'uses' => 'CourseController@get'
+]);
+

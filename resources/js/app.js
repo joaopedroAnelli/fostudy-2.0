@@ -9,6 +9,7 @@ import VueRouter from 'vue-router';
 import VueAxios from 'axios';
 import axios from 'axios';
 import router from './src/router'
+import '../css/app.css'
 
 require('./bootstrap');
 

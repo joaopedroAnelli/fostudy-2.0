@@ -12,10 +12,16 @@
 */
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+Auth::routes();
 
 Route::redirect('/', '/dashboard');
 
 Route::get('/{any}', 'SpaController@index')->where('any', '.*');
 
+
+
+Route::get('/home', 'HomeController@index')->name('home');

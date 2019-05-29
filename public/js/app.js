@@ -1811,6 +1811,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1844,6 +1848,11 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     goToPage: function goToPage(route) {
       this.$router.push(route);
+    },
+    logout: function logout() {
+      axios.post('/logout').then(function (r) {
+        window.location.reload();
+      });
     }
   }
 });
@@ -38805,7 +38814,19 @@ var render = function() {
           _vm._v(" "),
           _c("v-toolbar-title", { staticClass: "mr-5 align-center" }, [
             _c("span", { staticClass: "title" }, [_vm._v("Fostudy")])
-          ])
+          ]),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c(
+            "v-toolbar-items",
+            [
+              _c("v-btn", { attrs: { flat: "" }, on: { click: _vm.logout } }, [
+                _vm._v("Logout")
+              ])
+            ],
+            1
+          )
         ],
         1
       ),

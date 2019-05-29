@@ -33,6 +33,10 @@
                 <v-toolbar-title class="mr-5 align-center">
                     <span class="title">Fostudy</span>
                 </v-toolbar-title>
+                <v-spacer/>
+                <v-toolbar-items>
+                    <v-btn @click="logout" flat>Logout</v-btn>
+                </v-toolbar-items>
             </v-toolbar>
             <v-content>
                 <v-container fill-height fluid grid-list-xl>
@@ -64,6 +68,12 @@
             methods: {
                 goToPage(route) {
                     this.$router.push(route)
+                },
+
+                logout() {
+                    axios.post('/logout').then(r => {
+                        window.location.reload()
+                    })
                 }
             }
         }

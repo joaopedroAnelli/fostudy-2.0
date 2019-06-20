@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Homework extends Model
+class Test extends Model
 {
     protected $guarded = ['id'];
     public $timestamps = false;

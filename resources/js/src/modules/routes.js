@@ -4,6 +4,7 @@ import disciplinas from './disciplinas/routes'
 import cursos from './cursos/routes'
 import aulas from './aulas/routes'
 import trabalhos from './trabalhos/routes'
+import provas from './provas/routes'
 
 const routes = Array.concat(
     institution,
@@ -11,6 +12,7 @@ const routes = Array.concat(
     disciplinas,
     cursos,
     aulas,
+    provas,
     trabalhos
 )
 

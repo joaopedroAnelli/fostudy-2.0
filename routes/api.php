@@ -69,3 +69,11 @@ Route::post('/homeworks', [
 Route::get('/homeworks', [
     'uses' => 'HomeworkController@show'
 ]);
+
+Route::post('/tests', [
+    'uses' => 'TestController@store'
+]);
+
+Route::get('/tests', [
+    'uses' => 'TestController@show'
+]);

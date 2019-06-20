@@ -219,9 +219,12 @@
                     return false
                 }
 
-                axios.post('/api/instituicoes', this.institution)
-
-                this.$router.push('/instituicoes')
+                axios.post('/api/instituicoes', this.institution).then(r => {
+                    sweetalert('Perfeito!', 'Instituição cadastrada com sucesso!', 'success').then(r => {
+                        this.$router.push('/instituicoes')
+                        window.location.reload()
+                    })
+                })
             }
 
         }

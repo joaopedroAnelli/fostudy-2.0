@@ -1,20 +1,22 @@
 <template>
     <v-container>
         <v-layout column fill-height>
-            <h1>Instituições</h1>
+            <h1>Trabalhos</h1>
             <v-divider class="mb-5"/>
 
 
 
-            <v-data-table v-if="institutions.length"
+            <v-data-table v-if="homeworks.length"
                           :headers="headers"
-                          :items="institutions"
+                          :items="homeworks"
                           class="elevation-1"
             >
                 <template v-slot:items="props">
                     <td>{{ props.item.id }}</td>
                     <td>{{ props.item.name }}</td>
-                    <td>{{ props.item.courses_quantity }}</td>
+                    <td>{{ props.item.created_at }}</td>
+                    <td>{{ props.item.delivery_at }}</td>
+                    <td>{{ props.item.discipline.name }}</td>
                 </template>
             </v-data-table>
 
@@ -26,13 +28,13 @@
                         :value="true"
                         type="info"
                 >
-                    Nenhuma instituição cadastrada.
+                    Nenhum trabalho cadastrado.
                 </v-alert>
 
             </div>
 
             <v-btn
-                    @click="$router.push('/instituicoes/novo')"
+                    @click="$router.push('/trabalhos/novo')"
                     absolute
                     dark
                     fab
@@ -48,6 +50,7 @@
 </template>
 
 <script>
+    import moment from 'moment'
     export default {
         name: "index",
         data () {
@@ -60,15 +63,21 @@
                         value: 'id'
                     },
                     { text: 'Nome', value: 'name'},
-                    { text: 'Cursos qtd', value: 'courses_quantity'},
+                    { text: 'Criado em', value: 'created_at'},
+                    { text: 'Entrega para', value: 'delivery_at'},
+                    { text: 'Disciplina', value: 'discipline.name'},
                 ],
-                institutions: []
+                homeworks: []
             }
         },
 
         mounted() {
-            axios.get('/api/instituicoes').then(r => {
-                this.institutions = r.data
+            axios.get('/api/homeworks').then(r => {
+                r.data.forEach(homework => {
+                    homework.created_at = moment(homework.created_at).format('DD/MM/YYYY [às] HH[h]mm')
+                    homework.delivery_at = moment(homework.delivery_at).format('DD/MM/YYYY [às] HH[h]mm')
+                    this.homeworks.push(homework)
+                })
             })
         }
     }

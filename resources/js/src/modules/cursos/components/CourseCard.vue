@@ -6,9 +6,8 @@
                     <h3 class="headline mb-4">{{ course.name }}</h3>
                     <div>
                         <ul>
-                            <li>{{ course.name }}</li>
-                            <li>{{ course.seasons_quantity}}</li>
-                            <li>{{ course.months_per_season}}</li>
+                            <li>{{ course.seasons_quantity}} temporadas</li>
+                            <li>{{ course.months_per_season}} meses por temporada</li>
                         </ul>
                     </div>
                 </div>

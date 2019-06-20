@@ -61,3 +61,11 @@ Route::group(['middleware' => 'auth:web'], function(){
         'uses' => 'UserController@show'
     ]);
 });
+
+Route::post('/homeworks', [
+    'uses' => 'HomeworkController@store'
+]);
+
+Route::get('/homeworks', [
+    'uses' => 'HomeworkController@show'
+]);

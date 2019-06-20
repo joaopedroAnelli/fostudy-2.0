@@ -16,10 +16,10 @@ class CreateAbsencesTable extends Migration
         Schema::create('absences', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('lessons_id');
+            $table->unsignedBigInteger('class_id');
 
             $table->foreign('student_id')->references('id')->on('users');
-            $table->foreign('lessons_id')->references('id')->on('lessons');
+            $table->foreign('class_id')->references('id')->on('classes');
         });
     }
 

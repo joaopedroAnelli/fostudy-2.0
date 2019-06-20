@@ -2089,8 +2089,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2101,14 +2099,13 @@ __webpack_require__.r(__webpack_exports__);
       classs: {
         starts_at: null,
         discipline_id: null,
-        teacher_id: null,
         absence: false
       },
       time: moment__WEBPACK_IMPORTED_MODULE_1___default()().format('HH:mm'),
       date: moment__WEBPACK_IMPORTED_MODULE_1___default()().format('YYYY-MM-DD'),
       rules: {
-        name: [function (v) {
-          return !!v || 'Nome obrigatório!';
+        discipline_id: [function (v) {
+          return !!v || 'Disciplina obrigatória!';
         }],
         courseName: [function (v) {
           return !!v || 'Nome obrigatório';
@@ -2120,7 +2117,7 @@ __webpack_require__.r(__webpack_exports__);
         }]
       },
       teachers: ["Luis Evangelista", "Luis Fernando"],
-      disciplines: ["WEB", "Lab Eng Software"]
+      disciplines: []
     };
   },
   computed: {
@@ -2164,10 +2161,25 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this2 = this;
 
-      sweetalert__WEBPACK_IMPORTED_MODULE_0___default()('Salvo', 'Aula salva com sucesso!', 'success').then(function (r) {
-        _this2.$router.push('/dashboard');
-      });
+      if (this.valid) {
+        this.classs.starts_at = this.date + ' ' + this.time + ':00';
+        this.classs.absence = this.classs.absence === undefined ? false : this.classs.absence;
+        axios.post('/api/classes', this.classs).then(function (r) {
+          sweetalert__WEBPACK_IMPORTED_MODULE_0___default()('Salvo', 'Aula salva com sucesso!', 'success').then(function (r) {
+            _this2.$router.push('/dashboard');
+          });
+        });
+      } else {
+        sweetalert__WEBPACK_IMPORTED_MODULE_0___default()('Ops', 'Verifique os Campos', 'error');
+      }
     }
+  },
+  mounted: function mounted() {
+    var _this3 = this;
+
+    axios.get('/api/disciplines').then(function (r) {
+      _this3.disciplines = r.data;
+    });
   }
 });
 
@@ -57248,6 +57260,12 @@ var render = function() {
           _c(
             "v-form",
             {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.submit($event)
+                }
+              },
               model: {
                 value: _vm.valid,
                 callback: function($$v) {
@@ -57269,20 +57287,19 @@ var render = function() {
                         { attrs: { xs12: "", sm6: "", md6: "", lg3: "" } },
                         [
                           _c("v-select", {
-                            attrs: { items: _vm.teachers, label: "Professor" }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-flex",
-                        { attrs: { xs12: "", sm6: "", md6: "", lg3: "" } },
-                        [
-                          _c("v-select", {
                             attrs: {
                               items: _vm.disciplines,
-                              label: "Disciplina"
+                              "item-text": "name",
+                              "item-value": "id",
+                              label: "Disciplina",
+                              rules: _vm.rules.discipline_id
+                            },
+                            model: {
+                              value: _vm.classs.discipline_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.classs, "discipline_id", $$v)
+                              },
+                              expression: "classs.discipline_id"
                             }
                           })
                         ],
@@ -57375,14 +57392,14 @@ var render = function() {
                                 {
                                   staticClass: "mb-5",
                                   attrs: {
+                                    type: "submit",
                                     absolute: "",
                                     dark: "",
                                     fab: "",
                                     center: "",
                                     right: "",
                                     color: "success"
-                                  },
-                                  on: { click: _vm.submit }
+                                  }
                                 },
                                 [_c("v-icon", [_vm._v("check")])],
                                 1

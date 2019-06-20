@@ -7,20 +7,18 @@
             <v-divider class="mb-5"/>
 
 
-            <v-form v-model="valid">
+            <v-form v-model="valid" @submit.prevent="submit">
                 <v-container>
                     <v-layout column>
-                        <v-flex xs12 sm6 md6 lg3>
-                            <v-select
-                                    :items="teachers"
-                                    label="Professor"
-                            ></v-select>
-                        </v-flex>
 
                         <v-flex xs12 sm6 md6 lg3>
                             <v-select
+                                    v-model="classs.discipline_id"
                                     :items="disciplines"
+                                    item-text="name"
+                                    item-value="id"
                                     label="Disciplina"
+                                    :rules="rules.discipline_id"
                             ></v-select>
                         </v-flex>
 
@@ -53,7 +51,7 @@
                                 </v-btn>
 
                                 <v-btn
-                                        @click="submit"
+                                        type="submit"
                                         absolute
                                         dark
                                         fab
@@ -85,14 +83,13 @@
                 classs: {
                     starts_at: null,
                     discipline_id: null,
-                    teacher_id: null,
                     absence: false,
                 },
                 time: moment().format('HH:mm'),
                 date: moment().format('YYYY-MM-DD'),
                 rules: {
-                    name: [
-                        v => !!v || 'Nome obrigatório!'
+                    discipline_id: [
+                        v => !!v || 'Disciplina obrigatória!'
                     ],
                     courseName: [
                         v => !!v || 'Nome obrigatório'
@@ -107,8 +104,6 @@
                     "Luis Fernando"
                 ],
                 disciplines: [
-                    "WEB",
-                    "Lab Eng Software"
                 ]
 
             }
@@ -118,6 +113,7 @@
             formTitle () {
                 return this.editedIndex === -1 ? 'Novo curso' : 'Editar Curso'
             }
+
         },
 
         methods: {
@@ -154,11 +150,25 @@
             },
 
             submit() {
-                sweetalert('Salvo', 'Aula salva com sucesso!', 'success').then(r => {
-                    this.$router.push('/dashboard')
-                })
+                if (this.valid) {
+                    this.classs.starts_at = this.date + ' ' + this.time + ':00'
+                    this.classs.absence = this.classs.absence === undefined ? false : this.classs.absence;
+                    axios.post('/api/classes', this.classs).then(r => {
+                        sweetalert('Salvo', 'Aula salva com sucesso!', 'success').then(r => {
+                            this.$router.push('/dashboard')
+                        })
+                    })
+                } else {
+                    sweetalert('Ops', 'Verifique os Campos', 'error')
+                }
             }
 
+        },
+
+        mounted() {
+            axios.get('/api/disciplines').then(r => {
+                this.disciplines = r.data
+            })
         }
     }
 </script>

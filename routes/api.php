@@ -52,6 +52,10 @@ Route::get('/disciplines', [
 ]);
 
 
+Route::post('/classes', [
+    'uses' => 'ClassController@store'
+]);
+
 Route::group(['middleware' => 'auth:web'], function(){
     Route::get('/user_data', [
         'uses' => 'UserController@show'

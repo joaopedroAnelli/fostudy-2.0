@@ -18,8 +18,9 @@ class CreateCoursesTable extends Migration
             $table->string('name');
             $table->integer('seasons_quantity');
             $table->integer('months_per_season');
+            $table->unsignedBigInteger('institution_id');
 
-            $table->foreing('instituitions_id')->references('id')->on('instituitions');
+            $table->foreign('institution_id')->references('id')->on('institutions');
         });
     }
 

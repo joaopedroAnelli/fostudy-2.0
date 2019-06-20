@@ -1,7 +1,14 @@
 <template>
     <v-container>
         <v-layout>
-            <discipline-card/>
+            <v-flex xs12 sm12 md6 lg3
+                    v-for="discipline in disciplines"
+                    :key="discipline.id"
+            >
+                <discipline-card
+                        :discipline="discipline"
+                />
+            </v-flex>
         </v-layout>
     </v-container>
 </template>
@@ -24,7 +31,7 @@
                     { text: 'Nome', value: 'name'},
                     { text: 'Cursos qtd', value: 'courses_quantity'},
                 ],
-                institutions: []
+                disciplines: []
             }
         },
 
@@ -33,20 +40,33 @@
         },
 
         mounted() {
-            swal({
-                title: "Heyy",
-                text: "Você não está inscrito em nenhum curso. Deseja se inscrever agora?",
-                icon: "warning",
-                buttons: ['Dashboard', 'Sim!'],
-                dangerMode: true,
+
+            axios.get('/api/disciplines').then(r => {
+                this.disciplines = r.data
+                this.showSwal()
             })
-                .then((willInscrit) => {
-                    if (willInscrit) {
-                        this.$router.push('/cursos/selecao')
-                    } else {
-                        this.$router.push('/dashboard')
-                    }
-                });
+
+        },
+
+        methods: {
+            showSwal() {
+                if (!this.disciplines.length) {
+                    swal({
+                        title: "Heyy",
+                        text: "Você não está matriculado em nenhuma disciplina. Deseja se matricular agora?",
+                        icon: "warning",
+                        buttons: ['Dashboard', 'Sim!'],
+                        dangerMode: true,
+                    })
+                        .then((willInscrit) => {
+                            if (willInscrit) {
+                                this.$router.push('/cursos/selecao')
+                            } else {
+                                this.$router.push('/dashboard')
+                            }
+                        });
+                }
+            }
         }
     }
 </script>

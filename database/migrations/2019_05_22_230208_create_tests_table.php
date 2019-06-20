@@ -18,6 +18,7 @@ class CreateTestsTable extends Migration
             $table->timestamp('starts_at');
             $table->timestamp('ends_at');
             $table->timestamp('created_at');
+            $table->unsignedBigInteger('teacher_id');
 
             $table->foreign('teacher_id')->references('id')->on('users');
         });

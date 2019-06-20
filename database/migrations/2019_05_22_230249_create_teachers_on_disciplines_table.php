@@ -14,6 +14,9 @@ class CreateTeachersOnDisciplinesTable extends Migration
     public function up()
     {
         Schema::create('teachers_on_disciplines', function (Blueprint $table) {
+            $table->unsignedBigInteger('teacher_id');
+            $table->unsignedBigInteger('discipline_id');
+
 
             $table->foreign('teacher_id')->references('id')->on('users');
             $table->foreign('discipline_id')->references('id')->on('disciplines');

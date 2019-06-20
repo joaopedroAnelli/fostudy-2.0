@@ -1,9 +1,17 @@
 <template>
     <v-container>
-        <v-layout>
-            <course-card @click="subscript()" :key="course.id" v-for="course in courses" :course="course"/>
-        </v-layout>
+        <v-layout column fill-height>
+            <h1>Escolha seu curso</h1>
+            <v-divider class="mb-5"/>
 
+            <v-container>
+                <v-layout>
+                    <v-flex xs12 sm12 md6 lg3>
+                        <course-card :key="course.id" v-for="course in courses" :course="course"/>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-layout>
     </v-container>
 </template>
 
@@ -27,12 +35,6 @@
             axios.get('/api/courses').then(r => {
                 this.courses = r.data
             })
-        },
-
-        methods: {
-            subscript(id) {
-                alert('Se inscreveu!!')
-            }
         }
     }
 </script>

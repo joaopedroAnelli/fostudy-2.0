@@ -16,11 +16,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Auth::routes();
+Route::group(['middleware' => 'web'], function () {
+    Auth::routes();
 
-Route::redirect('/', '/dashboard');
+//Route::redirect('/', '/dashboard');
 
-Route::get('/{any}', 'SpaController@index')->where('any', '.*');
-
-
-
+    Route::get('/{any}', 'SpaController@index')->where('any', '.*');
+});

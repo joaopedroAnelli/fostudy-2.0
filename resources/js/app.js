@@ -9,7 +9,9 @@ import VueRouter from 'vue-router';
 import VueAxios from 'axios';
 import axios from 'axios';
 import router from './src/router'
+import NoData from './src/components/NoData'
 import '../css/app.css'
+import ReceiveUser from "./src/components/ReceiveUser";
 
 require('./bootstrap');
 
@@ -21,6 +23,10 @@ Vue.use(VueAxios, axios);
 Vue.use(VueRouter)
 
 
+Vue.component('no-data', NoData);
+Vue.component('receive-user', ReceiveUser);
+
+
 
 Vue.use(Vuetify, {
     theme:  {
@@ -30,7 +36,7 @@ Vue.use(Vuetify, {
         error: '#f44336',
         warning: '#ffc107',
         info: '#03a9f4',
-        success: '#8bc34a',
+        success: '#8bc34a'
     }
 })
 

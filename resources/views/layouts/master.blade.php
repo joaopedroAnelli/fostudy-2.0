@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>{{ env('APP_NAME') }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -13,6 +13,7 @@
 <body>
 <div id="app">
     <router-view></router-view>
+    <receive-user user="{{\Illuminate\Support\Facades\Auth::user()->toJson()}}"/>
 </div>
 <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
 </body>

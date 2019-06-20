@@ -1,5 +1,5 @@
 <template>
-    <v-flex xs12 sm12 md6 lg3>
+    <v-flex @click="subscript">
         <v-card class="card">
             <v-card-title primary-title>
                 <div>
@@ -23,6 +23,12 @@
         props: {
             course: Object
         },
+
+        methods: {
+            subscript() {
+                this.$router.push('/disciplinas/selecao?courseId=' + this.course.id)
+            }
+        }
     }
 </script>
 

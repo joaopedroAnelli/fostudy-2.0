@@ -8,8 +8,8 @@ class CreateDisciplinesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
+     * Shopify. O QUE É DROPPING SHIPPING NACIONAL? O dro
+     * @return void Shopify. O QUE É DROPPING SHIPPING NACIONAL? O dro
      */
     public function up()
     {
@@ -17,6 +17,7 @@ class CreateDisciplinesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('season');
+            $table->unsignedBigInteger('course_id');
 
             $table->foreign('course_id')->references('id')->on('courses');
         });

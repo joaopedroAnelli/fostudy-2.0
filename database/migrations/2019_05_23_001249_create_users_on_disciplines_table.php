@@ -14,6 +14,9 @@ class CreateUsersOnDisciplinesTable extends Migration
     public function up()
     {
         Schema::create('users_on_disciplines', function (Blueprint $table) {
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('discipline_id');
+
 
             $table->foreign('student_id')->references('id')->on('users');
             $table->foreign('discipline_id')->references('id')->on('disciplines');

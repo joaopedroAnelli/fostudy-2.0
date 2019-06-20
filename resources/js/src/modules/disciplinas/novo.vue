@@ -136,7 +136,7 @@
                 valid: false,
                 courseIsValid: false,
                 dialog: false,
-                institution: {
+                class: {
                     name: "",
                     courses: []
                 },
@@ -196,22 +196,22 @@
                     return false
                 }
                 if (this.editedIndex > -1) {
-                    Object.assign(this.institution.courses[this.editedIndex], this.editedItem)
+                    Object.assign(this.class.courses[this.editedIndex], this.editedItem)
                 } else {
-                    this.institution.courses.push(this.editedItem)
+                    this.class.courses.push(this.editedItem)
                 }
                 this.close()
             },
 
             editItem (item) {
-                this.editedIndex = this.institution.courses.indexOf(item)
+                this.editedIndex = this.class.courses.indexOf(item)
                 this.editedItem = Object.assign({}, item)
                 this.dialog = true
             },
 
             deleteItem (item) {
-                const index = this.institution.courses.indexOf(item)
-                confirm('Você tem certeza que deseja excluir esse curso?') && this.institution.courses.splice(index, 1)
+                const index = this.class.courses.indexOf(item)
+                confirm('Você tem certeza que deseja excluir esse curso?') && this.class.courses.splice(index, 1)
             },
 
             submit() {
@@ -220,7 +220,7 @@
                     return false
                 }
 
-                axios.post('/api/instituicoes', this.institution)
+                axios.post('/api/instituicoes', this.class)
             }
 
         }

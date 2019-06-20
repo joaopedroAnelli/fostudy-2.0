@@ -9,14 +9,14 @@
             <v-flex xs12 md6>
                 <v-card>
                     <v-card-title>
-                        <h2>Presenças</h2>
+                        <h2>Faltas</h2>
                     </v-card-title>
                     <v-divider/>
                     <v-list>
                         <template>
                             <v-subheader
                             >
-                                Tete
+                                WEB 12/20
                             </v-subheader>
 
                             <v-divider
@@ -53,7 +53,7 @@
             return {
                 indicators: [
                     {
-                        name: 'Semanas',
+                        name: 'Semana',
                         data: '20/52'
                     },
                     {

@@ -60,6 +60,7 @@
                     { icon: 'book', text: 'Disciplinas', route: '/disciplinas'},
                     { icon: 'border_color', text: 'Provas', route: '/provas'},
                     { icon: 'featured_play_list', text: 'Trabalhos', route: '/trabalhos'},
+                    { icon: 'book   ', text: 'Aulas', route: '/aulas/novo'},
                 ]
             }),
             props: {

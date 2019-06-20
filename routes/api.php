@@ -31,3 +31,29 @@ Route::get('/courses', [
     'uses' => 'CourseController@get'
 ]);
 
+Route::get('/courses/{id}', [
+    'uses' => 'CourseController@show'
+]);
+
+Route::post('/courses/subscript', [
+    'uses' => 'CourseController@subscript'
+]);
+
+Route::post('/disciplines', [
+    'uses' => 'DisciplineController@store'
+]);
+
+Route::post('/disciplines/subscript', [
+    'uses' => 'DisciplineController@subscript'
+]);
+
+Route::get('/disciplines', [
+    'uses' => 'DisciplineController@show'
+]);
+
+
+Route::group(['middleware' => 'auth:web'], function(){
+    Route::get('/user_data', [
+        'uses' => 'UserController@show'
+    ]);
+});

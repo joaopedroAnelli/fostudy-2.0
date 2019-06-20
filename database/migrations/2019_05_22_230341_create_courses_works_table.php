@@ -18,6 +18,8 @@ class CreateCoursesWorksTable extends Migration
             $table->string('name');
             $table->timestamp('delivery_at');
             $table->timestamp('created_at');
+            $table->unsignedBigInteger('discipline_id');
+            $table->unsignedBigInteger('teacher_id');
 
             $table->foreign('discipline_id')->references('id')->on('disciplines');
             $table->foreign('teacher_id')->references('id')->on('users');

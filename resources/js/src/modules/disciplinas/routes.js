@@ -1,5 +1,6 @@
 import index from './index'
 import novo from "./novo";
+import selecao from "./selecao";
 
 export default [
     {
@@ -9,5 +10,9 @@ export default [
     {
         path: '/disciplinas/novo',
         component: novo
+    },
+    {
+        path: '/disciplinas/selecao',
+        component: selecao
     }
 ]

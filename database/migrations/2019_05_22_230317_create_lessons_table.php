@@ -19,9 +19,11 @@ class CreateLessonsTable extends Migration
             $table->timestamp('starts_at');
             $table->timestamp('finished_at');
             $table->string('notes');
+            $table->unsignedBigInteger('teacher_id');
+            $table->unsignedBigInteger('discipline_id');
 
             $table->foreign('teacher_id')->references('id')->on('users');
-            $table->foreign('disciplines_id')->references('id')->on('discipline');
+            $table->foreign('discipline_id')->references('id')->on('disciplines');
 
         });
     }

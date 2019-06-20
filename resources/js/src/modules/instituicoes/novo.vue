@@ -133,8 +133,7 @@
         name: "index",
         data () {
             return {
-                valid: false,
-                courseIsValid: false,
+                valid: false, courseIsValid: false,
                 dialog: false,
                 institution: {
                     name: "",
@@ -221,6 +220,8 @@
                 }
 
                 axios.post('/api/instituicoes', this.institution)
+
+                this.$router.push('/instituicoes')
             }
 
         }

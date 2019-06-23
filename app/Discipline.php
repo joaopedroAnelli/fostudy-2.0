@@ -16,4 +16,9 @@ class Discipline extends Model
         'season'
     ];
 
+    public function classes()
+    {
+        return $this->hasMany(SClass::class, 'discipline_id');
+    }
+
 }

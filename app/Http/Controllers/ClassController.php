@@ -20,7 +20,7 @@ class ClassController extends Controller
         if (!$request->input('absence')) {
 //            $user = $request->user();
             $user = User::query()->find(1);
-            $class->users()->attach($user->id);
+            $class->absences()->attach($user->id);
         }
         return response($class, 201);
     }

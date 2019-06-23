@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-layout row wrap>
-            <v-flex lg3 md6 xs12 v-for="indicator in indicators" :key="indicators.indexOf(indicator)">
+            <v-flex lg4 md6 xs12 v-for="(indicator, index) in dashData.indicators" :key="index">
                 <little-indicator  :name="indicator.name" :data="indicator.data"/>
             </v-flex>
         </v-layout>
@@ -14,14 +14,7 @@
                     <v-divider/>
                     <v-list>
                         <template>
-                            <v-subheader
-                            >
-                                WEB 12/20
-                            </v-subheader>
-
-                            <v-divider
-                            ></v-divider>
-
+                            <absence v-for="(absence, index) in dashData.absences" :key="index" :data="absence"/>
                         </template>
                     </v-list>
                 </v-card>
@@ -42,34 +35,27 @@
 
 <script>
     import LittleIndicator from './components/LittleIndicator'
+    import Absence from "./components/Absence";
 
 
     export default {
         name: "index",
         components: {
-            LittleIndicator
+            LittleIndicator,
+            Absence
         },
-        data() {
+        data: function () {
             return {
-                indicators: [
-                    {
-                        name: 'Semana',
-                        data: '20/52'
-                    },
-                    {
-                        name: 'Trabalhos Ativos',
-                        data: '5'
-                    },
-                    {
-                        name: 'Provas na Semana',
-                        data: '3'
-                    },
-                    {
-                        name: 'Mais Atenção',
-                        data: 'WEB'
-                    },
-                ]
+                dashData: {
+                    indicators: []
+                }
             }
+        },
+
+        mounted() {
+            axios.get('/api/dashboard').then(r => {
+                this.dashData = r.data
+            })
         }
     }
 </script>

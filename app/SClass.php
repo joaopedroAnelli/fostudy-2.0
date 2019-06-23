@@ -11,7 +11,7 @@ class SClass extends Model
 
     protected $guarded = ['id', 'absence'];
 
-    public function users()
+    public function absences()
     {
         return $this->belongsToMany(User::class, 'absences', 'class_id', 'student_id');
     }

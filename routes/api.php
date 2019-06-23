@@ -77,3 +77,8 @@ Route::post('/tests', [
 Route::get('/tests', [
     'uses' => 'TestController@show'
 ]);
+
+
+Route::get('/dashboard', [
+    'uses' => 'DashboardController@getDashboardData'
+]);
